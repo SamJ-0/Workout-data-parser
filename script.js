@@ -5,20 +5,27 @@ let lowerBodyExercises = ["calf raises", "hip abduction", "hip adduction",
                          "leg press", "leg extensions", "step ups"]
 
 
-let gymLogData = "2nd June Step ups 3x12 5kg (need to check balance and form)";
+let gymData = "2nd June Step ups 3x12 5kg (need to check balance and form)";
+let gymDataParts = gymData.split(" ");
 
-let gymLogEntries = gymLogData.slice(0, gymLogData.indexOf("("));
-let gymNoteEntries = gymLogData.slice(gymLogData.indexOf("("));
-
-let date = gymLogData.slice(0, gymLogData.indexOf(" "));
-
-let gymLogParts = gymLogEntries.trim().split(" ");
+let gymLog = gymData.slice(0, gymData.indexOf("(")).trim();
+let notes = gymData.slice(gymData.indexOf("("));
+let date = gymData.slice(0, gymData.indexOf(" "));
 
 console.log(date);
-console.log(gymLogEntries);
+console.log(gymLog);
+console.log(notes);
 
-let exercise = "";
+function checkMonth(month) {
+        return months.includes(month);
+}
 
-// console.log(gymNoteEntries);
-// console.log(gymLogDataArr);
+function checkExercise(exercise) {
+    return gymLog.toLowerCase().includes(exercise);
+}
 
+let month = gymDataParts.filter(checkMonth);
+console.log(month);
+
+const exercise = lowerBodyExercises.filter(checkExercise);
+console.log(exercise);
