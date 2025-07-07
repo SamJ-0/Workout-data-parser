@@ -2,30 +2,38 @@ const months = ["January", "February", "March", "April", "May", "June",
                "July", "August", "September", "October", "November", "December"];
 
 let lowerBodyExercises = ["calf raises", "hip abduction", "hip adduction", 
-                         "leg press", "leg extensions", "step ups"]
+                         "leg press", "leg extensions", "step ups"];
+
+let weightNotation = ["kg", "body weight", "bar"];
 
 
-let gymData = "2nd June Step ups 3x12 5kg (need to check balance and form)";
+let gymData = "20th June Step ups 3x12 5kg (need to check balance and form)";
 let gymDataParts = gymData.split(" ");
-
 let gymLog = gymData.slice(0, gymData.indexOf("(")).trim();
 let notes = gymData.slice(gymData.indexOf("("));
-let date = gymData.slice(0, gymData.indexOf(" "));
 
-console.log(date);
-console.log(gymLog);
-console.log(notes);
+const month = gymDataParts.filter(checkForMonth).toString();
+const exerciseName = lowerBodyExercises.filter(findExerciseName).toString();
 
-function checkMonth(month) {
+function checkForMonth(month) {
         return months.includes(month);
 }
 
-function checkExercise(exercise) {
+function findExerciseName(exercise) {
     return gymLog.toLowerCase().includes(exercise);
 }
 
-let month = gymDataParts.filter(checkMonth);
-console.log(month);
+console.log(checkForDate(gymDataParts));
 
-const exercise = lowerBodyExercises.filter(checkExercise);
-console.log(exercise);
+console.log(month);
+console.log(exerciseName);
+
+function checkForDate(data) {
+
+    if(isNaN(parseInt(data[0])) || parseInt(data[0]) <= 0) {
+        return "This isn't a number";
+    }
+    else if(parseInt(data[0]) >= 1 && parseInt(data[0]) <= 31) {
+       return data[0];
+    }
+}
