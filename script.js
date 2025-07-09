@@ -28,12 +28,6 @@ function findExerciseName(exercise) {
     return gymLog.toLowerCase().includes(exercise);
 }
 
-console.log(date.toString());
-console.log(month.toString());
-console.log(sets.toString());
-console.log(weight.toString());
-console.log(exerciseName.toString());
-
 function checkForNumber(data) {
     let number = parseInt(data);
 
@@ -72,3 +66,9 @@ function findSets(sets) {
        return sets.includes("x");
     }
 }
+
+console.log(date.toString());
+console.log(month.toString());
+console.log(exerciseName.toString());
+console.log(sets.toString());
+console.log(weight.toString());
