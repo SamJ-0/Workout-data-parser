@@ -56,15 +56,11 @@ function checkForDate(data) {
 }
 
 function findWeight(weight) {
-    if(weight.includes("kg")) {
         return weight.includes("kg");
-    }
 }
 
 function findSets(sets) {
-    if(sets.includes("x")) {
        return sets.includes("x");
-    }
 }
 
 console.log(date.toString());
