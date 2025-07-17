@@ -4,19 +4,19 @@ const months = ["January", "February", "March", "April", "May", "June",
 let lowerBodyExercises = ["calf raises", "hip abduction", "hip adduction", 
                          "leg press", "leg extensions", "step ups"];
 
-let weightNotation = ["kg", "body weight", "bar"];
+let weightNotation = ["kg", "body weight", "bar", "plates"];
 
 
-let gymData = "2nd June Step ups 3x12 5kg (need to check balance and form)";
+let gymData = "23rd June Step ups 3x12 5kg (need to check balance and form)";
 let gymDataParts = gymData.split(" ");
 let gymLog = gymData.slice(0, gymData.indexOf("(")).trim();
 let notes = gymData.slice(gymData.indexOf("("));
 
-const numbers = gymDataParts.filter(checkForNumber);
+const findDate = gymDataParts.filter(checkForDate);
 
-const date = numbers.filter(checkForDate);
-const weight = numbers.filter(findWeight);
-const sets = numbers.filter(findSets);
+const date = findDate.filter(checkForOrdinal);
+const weight = gymDataParts.filter(findWeight);
+const sets = gymDataParts.filter(findSets);
 const month = gymDataParts.filter(checkForMonth);
 const exerciseName = lowerBodyExercises.filter(findExerciseName);
 
@@ -28,7 +28,7 @@ function findExerciseName(exercise) {
     return gymLog.toLowerCase().includes(exercise);
 }
 
-function checkForNumber(data) {
+function checkForDate(data) {
     let number = parseInt(data);
 
     if(number >= 1 && number <= 31) {
@@ -36,7 +36,7 @@ function checkForNumber(data) {
     }
 }
 
-function checkForDate(data) {
+function checkForOrdinal(data) {
     let ordinal;
 
     if(data.includes("st")) {
@@ -56,11 +56,12 @@ function checkForDate(data) {
 }
 
 function findWeight(weight) {
-        return weight.includes("kg");
+      return weight.includes("kg");
 }
 
 function findSets(sets) {
-       return sets.includes("x");
+    let setMatch = sets.match(/\d+[a-z]+\d+/g);
+    return setMatch;
 }
 
 console.log(date.toString());
